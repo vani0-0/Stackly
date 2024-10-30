@@ -1,0 +1,20 @@
+{
+  "name": "stackly",
+  "version": "0.0.1",
+  "description": "A simple, modern name conveying a tech stack-focused project.",
+  "author": "vani0-0 <https://github.com/vani0-0>",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },  
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "^2.2.3"
+  }
+}

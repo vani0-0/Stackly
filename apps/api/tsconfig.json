@@ -1,0 +1,10 @@
+{
+  "extends": "@vani0-0/typescript-config/base.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
