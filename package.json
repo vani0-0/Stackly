@@ -1,20 +1,19 @@
 {
-  "name": "stackly",
-  "version": "0.0.1",
-  "description": "A simple, modern name conveying a tech stack-focused project.",
-  "author": "vani0-0 <https://github.com/vani0-0>",
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },  
+  "name": "Stackly",
+  "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "clean": "turbo run clean",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "^2.2.3"
+    "prettier": "^3.2.5",
+    "turbo": "^2.2.3",
+    "typescript": "5.5.4"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=18"
   }
 }

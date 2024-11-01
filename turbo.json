@@ -1,21 +1,18 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
   "tasks": {
     "build": {
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".svelte-kit/**", ".vercel/**", "public/dist/**"],
       "dependsOn": ["^build"],
-      "env": ["NEXT_PUBLIC_API_HOST"]
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^lint"]
     },
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "clean": {
-      "cache": false
     }
   }
 }
