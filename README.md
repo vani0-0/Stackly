@@ -73,7 +73,7 @@ pnpm --filter=api dev
 
 1. Create a network, which allows containers to communicate with each other, by using their container name as a hostname
 ```bash
-docker network create app_network
+docker network create stackly_network
 ```
 2. Build prod using new BuildKit engine
 ```bash
