@@ -1,81 +1,108 @@
-# Turborepo starter
+# Stackly
 
-This is an official starter Turborepo.
+ A simple, modern name conveying a tech stack-focused project.
 
-## Using this example
+## 🚀 Getting Started
+ Follow these instructions to get Stackly up and running on your local machine.
 
-Run the following command:
+### Prerequisites
+ <img src="assets/icon/nodejs.svg" alt="nodeJS" height="32"/> <img src="assets/icon/pnpm.svg" alt="pnpm" height="32"/> <img src="assets/icon/turborepo.svg" alt="turborepo" height="32"/> <img src="assets/icon/typescript.svg" alt="typescript" height="32"/> <img src="assets/icon/prisma.svg" alt="prisma" height="32"/> <img src="assets/icon/docker.svg" alt="docker" height="32"/>
 
-```sh
-npx create-turbo@latest
+1. Node.js - JavaScript runtime.
+2. PNPM - Fast, disk-space-efficient package manager.
+3. Turborepo - Tool for managing monorepos.
+4. TypeScript - Type-safe language for both backend and frontend.
+5. Prisma - ORM for efficient database handling.
+6. Docker - Containerization platform for consistent development environments.
+
+## 👨‍💻 About this repository
+ - [**`Turborepo`**](https://turbo.build/repo) - Monorepo management for efficient builds and dependency sharing.
+ - **`NodeJS`** - Server-side JavaScript runtime.
+ - **`ExpressJS`** - Lightweight web framework for the backend API.
+ - **`TypeScript`** - Type-safe language for both backend and frontend.
+ - **`SvelteKit`** - Modern frontend framework for creating reactive UIs.
+ - [**`PNPM`**](https://pnpm.io) - Fast, disk-space-efficient package manager.
+
+
+## 📂 Project Structure
+
+Here's an overview of the `stackly` project structure:
+
+```plaintext
+stackly
+├───.vscode                # VS Code workspace settings
+├───apps
+│   ├───api                # Backend service (Node.js + Express)
+│   └───web                # Frontend service (SvelteKit)
+├───assets                 # Icons and images for documentation
+└───packages               # Shared packages across apps (e.g., utilities)
 ```
 
-## What's inside?
+## 🏃 Quick Start
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+1. Install dependencies:
+```bash
+pnpm install
 ```
-cd my-turborepo
+2. Build the project:
+```bash
 pnpm build
 ```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+3. Run the development servers:
+```bash
 pnpm dev
 ```
+### 🧩 Run a workspace
 
-### Remote Caching
+You can use the `pnpm --filter=[WORKSPACE]` command to start the development process for a workspace.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+#### Examples
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+1. To run the `stackly` website:
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+```bash
+pnpm --filter=web dev
 ```
 
-## Useful Links
+2. To run the `stackly` api:
 
-Learn more about the power of Turborepo:
+```bash
+pnpm --filter=api dev
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+### 🐳 Run with docker
+
+1. Create a network, which allows containers to communicate with each other, by using their container name as a hostname
+```bash
+docker network create app_network
+```
+2. Build prod using new BuildKit engine
+```bash
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yaml build
+```
+
+3. Start prod in detached mode
+```bash
+docker-compose -f docker-compose.yaml up -d
+```
+
+Interactive Mode for Debugging
+
+```bash
+docker-compose run --entrypoint sh api
+```
+
+## 📜 Available Scripts
+These scripts can be run from the project root:
+ - build: Builds all projects in the monorepo.
+ - dev: Starts the development servers for all projects.
+ - lint: Checks for code quality and formatting issues.
+ - lint:fix: Automatically fixes any linting issues where possible.
+## 🤝 Contributing
+
+Please read the [contributing guide](/CONTRIBUTING.md).
+
+
+## Author
+  [vince^^]('https://github.com/vani0-0') - Check out my other repo
