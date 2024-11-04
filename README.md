@@ -23,7 +23,6 @@
  - **`SvelteKit`** - Modern frontend framework for creating reactive UIs.
  - [**`PNPM`**](https://pnpm.io) - Fast, disk-space-efficient package manager.
 
-
 ## 📂 Project Structure
 
 Here's an overview of the `stackly` project structure:
@@ -70,7 +69,6 @@ pnpm --filter=web dev
 pnpm --filter=api dev
 ```
 
-
 ### 🐳 Run with docker
 
 1. Create a network, which allows containers to communicate with each other, by using their container name as a hostname
@@ -95,14 +93,18 @@ docker-compose run --entrypoint sh api
 
 ## 📜 Available Scripts
 These scripts can be run from the project root:
- - build: Builds all projects in the monorepo.
- - dev: Starts the development servers for all projects.
- - lint: Checks for code quality and formatting issues.
- - lint:fix: Automatically fixes any linting issues where possible.
+ - `build`: Builds all projects in the monorepo.
+ - `dev`: Starts the development servers for all projects.
+ - `lint`: Checks for code quality and formatting issues.
+ - `lint:fix`: Automatically fixes any linting issues where possible.
+
 ## 🤝 Contributing
 
 Please read the [contributing guide](/CONTRIBUTING.md).
 
+## ⚖ License
+
+Licensed under the [MIT license](https://github.com/vani0-0/Stackly/blob/main/LICENSE).
 
 ## Author
-  [vince^^]('https://github.com/vani0-0') - Check out my other repo
+  [Vince^^]('https://github.com/vani0-0')

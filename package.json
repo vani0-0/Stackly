@@ -2,6 +2,7 @@
   "name": "stackly",
   "private": true,
   "packageManager": "pnpm@9.12.3",
+  "author": "Vince^^ <'https://github.com/vani0-0'>",
   "engines": {
     "node": ">=22",
     "npm": ">=10"
