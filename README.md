@@ -107,4 +107,4 @@ Please read the [contributing guide](/CONTRIBUTING.md).
 Licensed under the [MIT license](https://github.com/vani0-0/Stackly/blob/main/LICENSE).
 
 ## Author
-  [Vince]('https://github.com/vani0-0')
+  [Vince^^](https://github.com/vani0-0)
