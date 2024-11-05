@@ -3,6 +3,7 @@ import router from '@/network'
 import express from 'express'
 import swaggerUI from 'swagger-ui-express'
 import config from './config'
+import swaggerSpec from './swagger'
 
 class ExpressApp {
   public app: Application
@@ -21,7 +22,18 @@ class ExpressApp {
   private Routes(): void {
     this.app.use(`/${config.api.baseRoute}/${config.api.version}`, router)
 
-    this.app.use('/api-docs', swaggerUI.serve, swaggerUI.setup())
+    this.app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec, {
+      customfavIcon: '/swagger-ui/custom-favicon.ico',
+      customSiteTitle: 'Stackly',
+      swaggerOptions: {
+        docExpansion: 'none',
+        displayRequestDuration: true,
+        filter: true,
+        operationsSorter: 'alpha',
+        tagsSorter: 'alpha',
+        tryItOutEnabled: true,
+      },
+    }))
   }
 
   private ErrorHandler(): void {

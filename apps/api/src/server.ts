@@ -1,9 +1,8 @@
 import http from 'node:http'
-import { AppLogger } from '@/utils/index'
+import { AppLogger, PrintAppInfo } from '@/utils'
 import { connectPrisma, disconnectPrisma } from '@vani0-0/database'
 import { ExpressApp } from './app'
 import { PORT } from './app/config'
-import { printAppInfo } from './utils/appLogger'
 
 const expressServer = new ExpressApp()
 const app = expressServer.app
@@ -15,7 +14,7 @@ function createServer(cpuCount: number, process: NodeJS.Process): () => Promise<
       await connectPrisma()
 
       server.listen(PORT, () => {
-        printAppInfo(cpuCount, cpuCount, process.pid, `Worker ${process.pid}: Prisma and Redis Connected`, `Worker ${process.pid}: Server started on port ${PORT}`)
+        PrintAppInfo(cpuCount, cpuCount, process.pid, `Worker ${process.pid}: Prisma and Redis Connected`, `Worker ${process.pid}: Server started on port ${PORT}`)
       })
     }
     catch (error) {
