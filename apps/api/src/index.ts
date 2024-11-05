@@ -1,17 +1,12 @@
-/* eslint-disable no-console */
-import type { Request, Response } from 'express'
-import process from 'node:process'
-import express from 'express'
+import cluster from 'node:cluster'
+import { availableParallelism } from 'node:os'
+import { PrimaryProcess, WorkerProcess } from './worker'
 
-const app = express()
-const PORT = process.env.PORT || 3001
+const cpuCount = availableParallelism()
 
-app.use(express.json())
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, TypeScript with Express!')
-})
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`)
-})
+if (cluster.isPrimary) {
+  PrimaryProcess(cpuCount, cluster)
+}
+else {
+  WorkerProcess(cpuCount)
+}
