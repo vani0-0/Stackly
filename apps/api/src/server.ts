@@ -9,7 +9,7 @@ const expressServer = new ExpressApp()
 const app = expressServer.app
 const server = http.createServer(app)
 
-function createServer(cpuCount: number, process: NodeJS.Process) {
+function createServer(cpuCount: number, process: NodeJS.Process): () => Promise<void> {
   return async () => {
     try {
       await connectPrisma()

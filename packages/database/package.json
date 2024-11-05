@@ -11,14 +11,16 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup",
-    "clean": "rm -rf dist",
-    "dev": "tsup --watch",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push --skip-generate",
-    "db:migrate": "prisma migrate dev --name init",
-    "db:seed": "prisma db seed",
-    "db:studio": "prisma studio"
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "tsx src/seed.ts",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "dev": "tsup src/* --watch && pnpm generate",
+    "prebuild": "npm run generate",
+    "predev": "npm run generate",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^5.21.1",

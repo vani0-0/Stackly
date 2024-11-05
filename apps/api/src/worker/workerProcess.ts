@@ -2,7 +2,7 @@ import process from 'node:process'
 import createServer from '@/server'
 import { Shutdown } from '@/utils'
 
-function WorkerProcess(cpuCount: number) {
+function WorkerProcess(cpuCount: number): void {
   const server = createServer(cpuCount, process)
   server()
 

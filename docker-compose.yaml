@@ -18,8 +18,14 @@ services:
     ports:
       - 3001:3001
     networks:
-      - stackly_network
-
+      - stackly_network 
+    env_file: 
+      - ./apps/api/.env
+    volumes:
+      - sqlite_data:/data  
 networks:
   stackly_network:
     external: true
+
+volumes:
+  sqlite_data:

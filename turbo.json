@@ -20,6 +20,9 @@
         "^lint"
       ]
     },
+    "db:migrate:deploy": {},
+    "db:push": {},
+    "db:seed": {},
     "dev": {
       "cache": false,
       "persistent": true
@@ -29,11 +32,8 @@
         "^clean"
       ]
     },
-    "db:generate": {
-      "cache": false
-    },
-    "db:push": {
-      "cache": false
+    "generate": {
+      "dependsOn": ["^generate"]
     }
   }
 }

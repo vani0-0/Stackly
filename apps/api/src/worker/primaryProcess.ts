@@ -3,7 +3,7 @@ import { parse } from 'node:path'
 import process from 'node:process'
 import logger, { printAppInfo } from '@/utils/appLogger'
 
-function PrimaryProcess(cpuCount: number, cluster: Cluster) {
+function PrimaryProcess(cpuCount: number, cluster: Cluster): void {
   printAppInfo(cpuCount, cpuCount, process.pid, `Primary ${process.pid}, is running`)
 
   for (let i = 0; i < cpuCount; i++) {
