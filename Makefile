@@ -7,7 +7,7 @@ help:
 	@echo "Usage:"
 	@echo "  make build         Build the Docker images for production"
 	@echo "  make up            Start the Docker containers in detached mode"
-	@echo "  make down          Stop and remove the Docker containers"
+	@echo "  make down          Stop and remove the Docker containers and network"
 	@echo "  make clean         Remove all containers, images, and networks created by docker-compose"
 	@echo "  make logs          View the logs of all containers"
 	@echo "  make shell-api     Open an interactive shell in the API container"
@@ -26,13 +26,15 @@ build: network
 up: build
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 
-# Stop and remove containers
+# Stop and remove containers and network
 down:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) down
+	@docker network rm $(DOCKER_NETWORK) || true
 
 # Clean up all resources created by docker-compose
 clean:
 	@docker-compose -f $(DOCKER_COMPOSE_FILE) down --volumes --remove-orphans
+	@docker network rm $(DOCKER_NETWORK) || true
 
 # Show logs for all containers
 logs:

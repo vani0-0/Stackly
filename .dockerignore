@@ -15,6 +15,5 @@ Dockerfile
 .vscode
 build
 package
-**/.env
 out
 .turbo

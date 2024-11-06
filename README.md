@@ -92,7 +92,7 @@ docker-compose run --entrypoint sh api
 ```
 
 ### ⚙ Run docker with `Make`
-Too many commands with docker? Simplif your workflow with `Make`. Download make [here](https://gnuwin32.sourceforge.net/packages/make.htm) if you don't already have it installed. Use the commands below to streamline Docker operations for Stackly.
+Too many commands with docker? Simplify your workflow with `Make`. Download make [here](https://gnuwin32.sourceforge.net/packages/make.htm) if you don't already have it installed. Use the commands below to streamline Docker operations for Stackly.
 
  - Check Makefile Version
 ```bash

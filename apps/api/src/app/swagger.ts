@@ -1,7 +1,8 @@
 import type { Options } from 'swagger-jsdoc'
 import path from 'node:path'
+import process from 'node:process'
 import swaggerJSDoc from 'swagger-jsdoc'
-import config, { PORT } from './config'
+import config from './config'
 
 const options: Options = {
   swaggerDefinition: {
@@ -13,7 +14,7 @@ const options: Options = {
     },
     servers: [
       {
-        url: `http://localhost:${PORT}/${config.api.baseRoute}/${config.api.version}`,
+        url: `http://localhost:${process.env.BACKEND_PORT}/${config.api.baseRoute}/${config.api.version}`,
         description: 'Local development server',
       },
     ],

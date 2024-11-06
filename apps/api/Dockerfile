@@ -21,6 +21,7 @@ RUN apk update && apk add --no-cache libc6-compat
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/out/json/ .
+COPY --from=builder /usr/src/app/apps/api/.env.production.* .
 RUN pnpm install
 COPY --from=builder /usr/src/app/out/full .
 RUN pnpm build --filter=api...
