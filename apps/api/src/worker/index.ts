@@ -1,2 +1,2 @@
-export { default as PrimaryProcess } from './primaryProcess'
-export { default as WorkerProcess } from './workerProcess'
+export { default as PrimaryProcess } from './primary-process'
+export { default as WorkerProcess } from './worker-process'

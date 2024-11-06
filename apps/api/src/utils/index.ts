@@ -1,3 +1,3 @@
-export { default as AppLogger } from './appLogger'
-export { default as PrintAppInfo } from './printAppInfo'
+export { default as AppLogger } from './app-logger'
+export { default as PrintAppInfo } from './print-app-info'
 export { default as Shutdown } from './shutdown'

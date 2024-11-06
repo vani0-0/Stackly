@@ -12,7 +12,9 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "./src/types/express-types.d.ts"
+      "./src/types/express-types.d.ts",
+      "./src/types/environment.d.ts",
+      "./src/types/lib-defs/env.d.ts"
     ],
     "strictNullChecks": true,
     "outDir": "./dist",

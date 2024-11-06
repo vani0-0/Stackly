@@ -1,7 +1,7 @@
 services:
   web:
     container_name: web
-    build: 
+    build:
       context: .
       dockerfile: ./apps/web/Dockerfile
     restart: always
@@ -11,18 +11,18 @@ services:
       - stackly_network
   api:
     container_name: api
-    build: 
+    build:
       context: .
       dockerfile: ./apps/api/Dockerfile
     restart: always
     ports:
       - 3001:3001
     networks:
-      - stackly_network 
-    env_file: 
+      - stackly_network
+    env_file:
       - ./apps/api/.env
     volumes:
-      - sqlite_data:/data  
+      - sqlite_data:/data
 networks:
   stackly_network:
     external: true

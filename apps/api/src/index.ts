@@ -1,7 +1,6 @@
 import cluster from 'node:cluster'
 import { availableParallelism } from 'node:os'
 import { PrimaryProcess, WorkerProcess } from './worker'
-import 'dotenv/config'
 
 const cpuCount = availableParallelism()
 

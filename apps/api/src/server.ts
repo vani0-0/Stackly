@@ -1,9 +1,11 @@
 import http from 'node:http'
+import process from 'node:process'
 import { AppLogger, PrintAppInfo } from '@/utils'
 import { connectPrisma, disconnectPrisma } from '@vani0-0/database'
 import { ExpressApp } from './app'
-import { PORT } from './app/config'
+import '@/utils/env-validator'
 
+const PORT = process.env.BACKEND_PORT
 const expressServer = new ExpressApp()
 const app = expressServer.app
 const server = http.createServer(app)

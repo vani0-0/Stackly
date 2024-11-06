@@ -1,6 +1,6 @@
 import process from 'node:process'
 import createServer from '@/server'
-import { Shutdown } from '@/utils'
+import { AppLogger, Shutdown } from '@/utils'
 
 function WorkerProcess(cpuCount: number): void {
   const server = createServer(cpuCount, process)
@@ -10,7 +10,7 @@ function WorkerProcess(cpuCount: number): void {
   process.on('SIGINT', Shutdown)
 
   process.on('uncaughtException', (err) => {
-    console.error(`Worker ${process.pid}: Uncaught Exception`, err)
+    AppLogger.error(`Worker ${process.pid}: Uncaught Exception: ${err}`)
     Shutdown()
   })
 }

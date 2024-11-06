@@ -1,6 +1,6 @@
 import process from 'node:process'
 import { disconnectPrisma } from '@vani0-0/database'
-import logger from './appLogger'
+import logger from './app-logger'
 
 async function Shutdown() {
   logger.info(`Worker ${process.pid}: Shutting down gracefully...`, 'Stackly API')

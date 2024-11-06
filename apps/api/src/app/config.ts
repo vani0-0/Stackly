@@ -1,11 +1,3 @@
-import process from 'node:process'
-
-export const ENV = process.env.NODE_ENV || 'development'
-export const PORT = process.env.BACKEND_PORT || 'Not set'
-export const APP_URL = process.env.BACKEND_BASE_URL || 'Not set'
-export const API_URL = process.env.FRONTEND_BASE_URL || 'Not set'
-export const DB_URL = process.env.DATABASE_URL || 'Not set'
-
 interface IAppConfig {
   api: {
     baseRoute: string

@@ -17,8 +17,8 @@
     "db:seed": "tsx src/seed.ts",
     "format": "prisma format",
     "generate": "prisma generate",
-    "dev": "tsup src/* --watch && pnpm generate",
-    "prebuild": "npm run generate",
+    "dev": "tsup src/* --watch && predev",
+    "build": "npm run generate",
     "predev": "npm run generate",
     "studio": "prisma studio"
   },
