@@ -91,6 +91,32 @@ Interactive Mode for Debugging
 docker-compose run --entrypoint sh api
 ```
 
+### ⚙ Run docker with `Make`
+Too many commands with docker? Simplif your workflow with `Make`. Download make [here](https://gnuwin32.sourceforge.net/packages/make.htm) if you don't already have it installed. Use the commands below to streamline Docker operations for Stackly.
+
+ - Check Makefile Version
+```bash
+make --version
+```
+
+ - Check Available Scripts
+```bash
+make help
+```
+
+ - Available Scripts on Make
+ ```bash
+Usage:
+  make build         Build the Docker images for production
+  make up            Start the Docker containers in detached mode
+  make down          Stop and remove the Docker containers
+  make clean         Remove all containers, images, and networks created by docker-compose
+  make logs          View the logs of all containers
+  make shell-api     Open an interactive shell in the API container
+  make shell-web     Open an interactive shell in the Web container
+  make network       Create Docker network
+ ```
+
 ## 📜 Available Scripts
 These scripts can be run from the project root:
  - `build`: Builds all projects in the monorepo.
