@@ -10,7 +10,7 @@ const controller = new AuthController(new AuthService())
 
 /**
  * @swagger
- * /auth/login
+ * /auth/login:
  *  post:
  *    summary: Log's in a user
  *    tags: [Auth]

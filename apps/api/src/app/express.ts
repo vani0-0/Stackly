@@ -37,8 +37,7 @@ class ExpressApp {
 
   private Routes(): void {
     this.app.use(`/${config.api.baseRoute}/${config.api.version}`, router)
-
-    this.app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec, {
+    this.app.use(`${config.docs.apiDocsPath}`, swaggerUI.serve, swaggerUI.setup(swaggerSpec, {
       customfavIcon: '/swagger-ui/custom-favicon.ico',
       customSiteTitle: 'Stackly',
       swaggerOptions: {
