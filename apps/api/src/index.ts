@@ -1,6 +1,6 @@
 import cluster from 'node:cluster'
 import { availableParallelism } from 'node:os'
-import { PrimaryProcess, WorkerProcess } from './worker'
+import { PrimaryProcess, WorkerProcess } from './workers'
 
 const cpuCount = availableParallelism()
 

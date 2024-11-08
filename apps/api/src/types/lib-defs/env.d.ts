@@ -9,9 +9,8 @@ declare global {
       BACKEND_BASE_URL: string
       DATABASE_URL: string
       REDIS_URL: string
-      APP_KEY: string
     }
   }
 }
 
-export {}
+export { }

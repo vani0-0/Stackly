@@ -26,4 +26,5 @@ class AppConfig {
 }
 
 const config = new AppConfig()
+
 export default config

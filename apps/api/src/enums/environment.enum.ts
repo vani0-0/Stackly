@@ -1,10 +1,10 @@
 export enum Environments {
-  PRODUCTION = 'production',
+  PROD = 'production',
   DEV = 'development',
 }
 
 export enum EnvironmentFile {
-  DEFAULT = '.env',
-  PRODUCTION = '.env.production.local',
+  DEFAULT = '.env.local',
+  PROD = '.env.production.local',
   DEV = '.env.development.local',
 }

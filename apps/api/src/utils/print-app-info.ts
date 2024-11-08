@@ -1,28 +1,29 @@
 import process from 'node:process'
-import { Config } from '@/app'
-import { AppLogger } from '.'
+import { Environments } from '@/enums/environment.enum'
+import { AppLogger } from '@/lib'
 
-function printAppInfo(cpuCount: number = 1, workerCount: number = 1, processId: number | string = 'unknown', customMessage: string = '', customMessage2: string = '') {
-  const ENV = process.env.NODE_ENV
-  const PORT = process.env.BACKEND_PORT
-  const API_URL = process.env.FRONTEND_BASE_URL
-  const APP_URL = process.env.BACKEND_BASE_URL
-  const DB_URL = process.env.DATABASE_URL
+function printAppInfo(cpuCount: number = 1, workerCount: number = 1, processId: number | string = 'Unknown', customMessage: string = '', customMessage2: string = ''): void {
+  const env = process.env.NODE_ENV || Environments.DEV
+  const port = process.env.BACKEND_PORT || 'Not set'
+  const appUrl = process.env.FRONTEND_BASE_URL || 'Not set'
+  const apiUrl = process.env.BACKEND_BASE_URL || 'Not set'
+  const redisUrl = process.env.REDIS_URL || 'Not set'
+  const dbUrl = process.env.DATABASE_URL || 'Not set'
 
-  AppLogger.info('-----------------------------------------------------------------')
-  AppLogger.info('Server started succesfully.', 'Stackly')
-  AppLogger.debug(ENV, 'Environment')
-  AppLogger.debug(PORT, 'Port')
-  AppLogger.debug(API_URL, 'API Url')
-  AppLogger.debug(`/${Config.api.baseRoute}/${Config.api.version}`, 'API Base Route')
-  AppLogger.debug(APP_URL, 'APP Url')
-  AppLogger.debug(DB_URL, 'Database Url')
+  AppLogger.info('--------------------------------------------------------------')
+  AppLogger.info('Server is running successfully...')
+  AppLogger.debug(env, 'Env')
+  AppLogger.debug(port, 'Port')
+  AppLogger.debug(apiUrl, 'Server URL')
+  AppLogger.debug(appUrl, 'Client URL')
+  AppLogger.debug(redisUrl, 'Redis URL')
+  AppLogger.debug(dbUrl, 'Database URL')
   AppLogger.info(processId, 'Process ID')
-  AppLogger.info(cpuCount, 'CPU Count')
+  AppLogger.info(cpuCount, 'CPU Count ')
   AppLogger.info(workerCount, 'Worker Count')
-  AppLogger.info(customMessage, 'Custom Message 1')
-  AppLogger.info(customMessage2, 'Custom Message 2')
-  AppLogger.info('-----------------------------------------------------------------')
+  AppLogger.info(customMessage)
+  AppLogger.info(customMessage2)
+  AppLogger.info('--------------------------------------------------------------')
 }
 
 export default printAppInfo

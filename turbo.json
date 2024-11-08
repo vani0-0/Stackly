@@ -10,9 +10,11 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "db:migrate:deploy": {},
-    "db:push": {},
-    "db:seed": {},
+    "prisma:migrate": {},
+    "prisma:studio": {},
+    "prisma:push": {},
+    "prisma:seed": {},
+    "prisma:build": {},
     "dev": {
       "cache": false,
       "persistent": true

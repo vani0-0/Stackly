@@ -1,18 +1,16 @@
 import process from 'node:process'
-import { disconnectPrisma } from '@vani0-0/database'
-import logger from './app-logger'
+import { AppLogger, disconnectPrisma } from '@/lib'
 
-async function Shutdown() {
-  logger.info(`Worker ${process.pid}: Shutting down gracefully...`, 'Stackly API')
+async function Shutdown(): Promise<void> {
+  AppLogger.info('App Shutting down...', `Worker ${process.pid}`)
   try {
     await disconnectPrisma()
-    logger.info(`Worker ${process.pid}: Prisma Disconnected`, 'Stackly API')
+    AppLogger.info('Prisma disconnected', `Worker ${process.pid}`)
     process.exit(0)
   }
   catch (err) {
-    logger.error(`Error during shutdown: ${err}`, `Worker ${process.pid}`)
+    AppLogger.error(`Error during shutdown: ${err}`, `Worker ${process.pid}`)
     process.exit(1)
   }
 }
-
 export default Shutdown
