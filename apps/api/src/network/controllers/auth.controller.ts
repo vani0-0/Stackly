@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import type { AuthService } from './auth.service'
+import type { AuthService } from '../services/auth.service'
 
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

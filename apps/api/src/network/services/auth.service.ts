@@ -1,7 +1,7 @@
 export class AuthService {
   constructor() {}
 
-  async login() {
+  async login() { }
 
-  }
+  async register() {}
 }

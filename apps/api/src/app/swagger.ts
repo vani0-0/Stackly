@@ -6,9 +6,9 @@ import config from './config'
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Next Nexus App',
+    title: 'Stackly',
     version: '1.0.0',
-    description: 'Next Nexus App Api Documentation',
+    description: 'Api Documentation',
   },
   servers: [
     {
@@ -20,7 +20,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: [path.join(__dirname, '../../**/*.ts')],
+  apis: [path.join(__dirname, '../**/*.ts')],
 }
 
 const swaggerSpec = swaggerJsDoc(options)
