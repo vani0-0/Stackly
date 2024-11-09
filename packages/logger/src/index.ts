@@ -1,1 +1,2 @@
-export { default as Logger } from './logger.js'
+export * from './logger'
+export * from './services/console-logger.service'

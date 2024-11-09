@@ -1,5 +1,5 @@
 {
-  "name": "@vani0-0/logger",
+  "name": "@vani0-0/utils",
   "type": "module",
   "version": "0.0.1",
   "exports": {
@@ -8,7 +8,7 @@
       "require": "./dist/index.cjs"
     }
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -20,15 +20,10 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@vani0-0/utils": "workspace:*"
-  },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.8.0",
     "@types/node": "^22.8.7",
-    "eslint": "^9.12.0",
     "nodemon": "^3.1.7",
-    "tsup": "^8.0.2",
+    "tsup": "^8.3.5",
     "typescript": "^5.6.3"
   }
 }

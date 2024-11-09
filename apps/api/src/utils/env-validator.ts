@@ -1,15 +1,15 @@
 import process from 'node:process'
 import { EnvironmentFile, Environments } from '@/enums/environment.enum'
-import { AppLogger } from '@/lib'
+import { Logger } from '@vani0-0/logger'
 import { config } from 'dotenv'
 
 if (process.env.NODE_ENV === Environments.DEV) {
   config({ path: EnvironmentFile.DEV })
-  AppLogger.info('Loaded Development Environment Variables', 'Stackly')
+  Logger.log('Loaded Development Environment Variables', 'Stackly')
 }
 else if (process.env.NODE_ENV === Environments.PROD) {
   config({ path: EnvironmentFile.PROD })
-  AppLogger.info('Loaded Production Environment Variables', 'Stackly')
+  Logger.log('Loaded Production Environment Variables', 'Stackly')
 }
 
 function validateEnv() {
@@ -22,15 +22,15 @@ function validateEnv() {
 
   const missingVariables = requiredVariables.filter(variable => !process.env[variable])
   if (missingVariables.length > 0) {
-    AppLogger.error(`Missing required environment variables ${missingVariables.join(', ')}`)
+    Logger.error(`Missing required environment variables ${missingVariables.join(', ')}`)
     process.exit(1)
   }
 
   if (Number.isNaN(process.env.BACKEND_PORT)) {
-    AppLogger.error('BACKEND_PORT must be a number')
+    Logger.error('BACKEND_PORT must be a number')
     process.exit(1)
   }
-  AppLogger.info('Environment variables are ready.')
+  Logger.log('Environment variables are ready.')
 }
 
 validateEnv()

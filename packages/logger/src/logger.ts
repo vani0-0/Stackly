@@ -1,75 +1,140 @@
-/* eslint-disable no-console */
-import type { LoggerOptions, LogLevel } from './types.js'
-import kleur from 'kleur'
+import { ConsoleLogger } from './services/console-logger.service'
+import { isLogLevelEnabled } from './utils'
 
-const defaultOptions: LoggerOptions = {
-  showTimestamp: true,
-  level: 'info',
+export type LoggerFn = (message: any, ...optionalParams: any[]) => any
+
+export type LogLevel = 'log' | 'error' | 'warn' | 'debug' | 'verbose' | 'fatal'
+
+export interface LoggerService {
+  log: LoggerFn
+  error: LoggerFn
+  warn: LoggerFn
+  debug?: LoggerFn
+  verbose?: LoggerFn
+  fatal?: LoggerFn
 }
 
-class Logger {
-  private options: LoggerOptions
+const DEFAULT_LOGGER = new ConsoleLogger()
 
-  constructor(options?: LoggerOptions) {
-    this.options = { ...defaultOptions, ...options }
-  }
+const dateTimeFormatter = new Intl.DateTimeFormat(undefined, {
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  day: '2-digit',
+  month: '2-digit',
+})
 
-  private getTimestamp(): string {
-    return new Date().toISOString()
-  }
+export class Logger implements LoggerService {
+  protected static staticInstanceRef?: LoggerService = DEFAULT_LOGGER
+  protected static logLevels?: LogLevel[]
 
-  private shouldLog(level: LogLevel): boolean {
-    const levels: LogLevel[] = ['debug', 'info', 'warn', 'error']
-    return levels.indexOf(level) >= levels.indexOf(this.options.level || 'info')
-  }
+  protected localInstanceRef?: LoggerService
 
-  private formatMessage(level: LogLevel, message: any, title?: string): string {
-    const timestamp = this.options.showTimestamp ? `[${this.getTimestamp()}]` : ''
-    const levelStr = `[${level.toUpperCase()}]`
-    const titleStr = title ? `${kleur.bold(title)}: ` : '' // Apply bold to title if provided
+  constructor()
+  constructor(context: string)
+  constructor(context: string, options?: { timestamp?: boolean })
+  constructor(protected context?: string, protected options: { timestamp?: boolean } = {}) {}
 
-    return `${timestamp} ${levelStr} ${titleStr}${message}`
-  }
-
-  log(level: LogLevel, message: any, title?: string): void {
-    if (!this.shouldLog(level))
-      return
-
-    const output = this.formatMessage(level, message, title)
-
-    switch (level) {
-      case 'info':
-        console.log(kleur.green(output))
-        break
-      case 'warn':
-        console.warn(kleur.yellow(output))
-        break
-      case 'error':
-        console.error(kleur.red(output))
-        break
-      case 'debug':
-        console.debug(kleur.gray(output))
-        break
-      default:
-        console.log(output)
+  get localInstance(): LoggerService {
+    if (Logger.staticInstanceRef === DEFAULT_LOGGER) {
+      return this.registerLocalInstanceRef()
     }
+    else if (Logger.staticInstanceRef instanceof Logger) {
+      const prototype: LoggerService = Object.getPrototypeOf(Logger.staticInstanceRef)
+      if (prototype.constructor === Logger) {
+        return this.registerLocalInstanceRef()
+      }
+    }
+    return Logger.staticInstanceRef as LoggerService
   }
 
-  info(message: any, title?: string) {
-    this.log('info', message, title)
+  log(message: any, context?: string): void
+  log(message: any, ...optionalParams: [...any, string?]): void
+  log(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.log?.(message, ...optionalParams)
   }
 
-  warn(message: any, title?: string) {
-    this.log('warn', message, title)
+  error(message: any, context?: string): void
+  error(message: any, ...optionalParams: [...any, string?]): void
+  error(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.error?.(message, ...optionalParams)
   }
 
-  error(message: any, title?: string) {
-    this.log('error', message, title)
+  warn(message: any, context?: string): void
+  warn(message: any, ...optionalParams: [...any, string?]): void
+  warn(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.warn?.(message, ...optionalParams)
   }
 
-  debug(message: any, title?: string) {
-    this.log('debug', message, title)
+  debug(message: any, context?: string): void
+  debug(message: any, ...optionalParams: [...any, string?]): void
+  debug(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.debug?.(message, ...optionalParams)
+  }
+
+  verbose(message: any, context?: string): void
+  verbose(message: any, ...optionalParams: [...any, string?]): void
+  verbose(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.verbose?.(message, ...optionalParams)
+  }
+
+  fatal(message: any, context?: string): void
+  fatal(message: any, ...optionalParams: [...any, string?]): void
+  fatal(message: any, ...optionalParams: any[]) {
+    this.localInstanceRef?.fatal?.(message, ...optionalParams)
+  }
+
+  static log(message: any, context?: string): void
+  static log(message: any, ...optionalParams: [...any, string?]): void
+  static log(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.log?.(message, ...optionalParams)
+  }
+
+  static error(message: any, context?: string): void
+  static error(message: any, ...optionalParams: [...any, string?]): void
+  static error(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.error?.(message, ...optionalParams)
+  }
+
+  static warn(message: any, context?: string): void
+  static warn(message: any, ...optionalParams: [...any, string?]): void
+  static warn(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.warn?.(message, ...optionalParams)
+  }
+
+  static debug(message: any, context?: string): void
+  static debug(message: any, ...optionalParams: [...any, string?]): void
+  static debug(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.debug?.(message, ...optionalParams)
+  }
+
+  static verbose(message: any, context?: string): void
+  static verbose(message: any, ...optionalParams: [...any, string?]): void
+  static verbose(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.verbose?.(message, ...optionalParams)
+  }
+
+  static fatal(message: any, context?: string): void
+  static fatal(message: any, ...optionalParams: [...any, string?]): void
+  static fatal(message: any, ...optionalParams: any[]) {
+    this.staticInstanceRef?.fatal?.(message, ...optionalParams)
+  }
+
+  static getTimestamp() {
+    return dateTimeFormatter.format(Date.now())
+  }
+
+  static isLevelEnabled(level: LogLevel): boolean {
+    const logLevels = Logger.logLevels
+    return isLogLevelEnabled(level, logLevels)
+  }
+
+  private registerLocalInstanceRef(): LoggerService {
+    if (this.localInstanceRef) {
+      return this.localInstanceRef
+    }
+    this.localInstanceRef = new ConsoleLogger(this.context as string, { timestamp: this.options?.timestamp, logLevels: Logger.logLevels })
+    return this.localInstanceRef
   }
 }
-
-export default Logger

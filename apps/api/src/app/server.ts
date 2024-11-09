@@ -1,6 +1,7 @@
 import http from 'node:http'
-import { AppLogger, connectPrisma, disconnectPrisma } from '@/lib'
+import { connectPrisma, disconnectPrisma } from '@/lib'
 import printAppInfo from '@/utils/print-app-info'
+import { Logger } from '@vani0-0/logger'
 import ExpressApp from './express'
 import '@/utils/env-validator'
 
@@ -18,7 +19,7 @@ function createServer(cpuCount: number, process: NodeJS.Process): () => Promise<
       })
     }
     catch (err) {
-      AppLogger.error(`Connection failed: ${err}`, `Worker ${process.pid}`)
+      Logger.error(`Connection failed: ${err}`, `Worker ${process.pid}`)
       await disconnectPrisma()
       process.exit(1)
     }
